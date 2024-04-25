@@ -54,7 +54,7 @@ volatile int zmienna=0;
 
 int readEnc(){
   // Odczytaj stan z pinu A enkodera
-  if(bit_is_clear(PORTC, PC4))
+  if(bit_is_clear(PINB, PB0))
   {
     pinA=0;
   }
@@ -64,7 +64,7 @@ int readEnc(){
     }
 
   // Odczytaj stan z pinu B enkodera
-  if(bit_is_clear(PORTC, PC5))
+  if(bit_is_clear(PINB, PB1))
   {
     pinB=0;
   }
@@ -85,19 +85,19 @@ int main() {
   // Ustawiamy jako wyjscie do segmentów i buzzera
   DDRC=0x0f;
   PORTC=0x30;
-
+  DDRB = 0x00;
+  PORTB = 0xff;
+  
   while(1){
 
       currentVal = readEnc();
 
-      if(((currentVal == 2 && previousVal == 0) || (currentVal == 3 && previousVal == 2) ||
-      (currentVal == 1 && previousVal == 3) || (currentVal == 0 && previousVal == 1)) && ti <= 100)
+      if((currentVal == 2 && previousVal == 0) && ti < 100)
       {
         ++ti;
       }
       
-      if(((currentVal == 1 && previousVal == 0) || (currentVal == 3 && previousVal == 1) ||
-      (currentVal == 2 && previousVal == 3) || (currentVal == 0 && previousVal == 2)) && ti >= -100)
+      if((currentVal == 3 && previousVal == 1) && ti > -100)
       {
         --ti;
       }
