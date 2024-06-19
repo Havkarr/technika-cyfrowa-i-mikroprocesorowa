@@ -118,7 +118,7 @@ int main() {
     dig2 = (calc*10);
     dig3 = (calc*100);
 
-    sprintf(text1, "%d\t", val_p);
+    sprintf(text1, "Potencjometr %d\t", val_p);
     writeText(text1);
 
     val_f = adcChannel2();
@@ -128,7 +128,7 @@ int main() {
     dig2 = (calc*10);
     dig3 = (calc*100);
 
-    sprintf(text1, "%d\t", val_f);
+    sprintf(text1, "Czujnik %d\t", val_f);
     writeText(text1);
    
     if(val_f >= val_p )
@@ -150,26 +150,15 @@ int main() {
 
     if(is_dark == true)
     {
-      sprintf(text1, "%d\n", valON);
+      sprintf(text1, "ON/OFF %d\n", valON);
       writeText(text1);
     }
     else
     {
-      sprintf(text1, "%d\n", valOFF);
+      sprintf(text1, "ON/OFF %d\n", valOFF);
       writeText(text1);
     }
     
     _delay_ms(500);
   }
 }
-
-/*int main() {
-  uartInit();
-  ADC_init();
-  while(true){
-    sprintf(text,"Hello World: %d \n", counter);
-    writeText(text);
-    ++counter;
-    _delay_ms(1000);
-  }
-}*/ 
